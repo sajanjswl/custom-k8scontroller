@@ -8,7 +8,7 @@ import (
 	"github.com/sajanjswl/custom-k8scontroller/pkg/apis/myresource"
 )
 
-// GroupVersion is the identifier for the API which includes
+/// GroupVersion is the identifier for the API which includes
 // the name of the group and the version of the API
 var SchemeGroupVersion = schema.GroupVersion{
 	Group:   myresource.GroupName,
@@ -17,7 +17,11 @@ var SchemeGroupVersion = schema.GroupVersion{
 
 // create a SchemeBuilder which uses functions to add types to
 // the scheme
-var AddToScheme = runtime.NewSchemeBuilder(addKnownTypes).AddToScheme
+// more comments here
+var (
+	SchemeBuilder = runtime.NewSchemeBuilder(addKnownTypes)
+	AddToScheme   = SchemeBuilder.AddToScheme
+)
 
 func Resource(resource string) schema.GroupResource {
 	return SchemeGroupVersion.WithResource(resource).GroupResource()
